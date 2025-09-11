@@ -1,0 +1,48 @@
+=============== Span Reconstruction Evalauation ====================================
+
+
+
+Model_1 : Bilingual denoising Training ----------
+
+==== Base mT5 ==== 
+EN -> BLEU: 0.0000, ROUGE1: 0.0009, ROUGE-L: 0.0009 
+IT -> BLEU: 0.0000, ROUGE1: 0.0020, ROUGE-L: 0.0020 
+
+==== Fine-tuned mT5 ==== 
+EN -> BLEU: 0.0422, ROUGE1: 0.3669, ROUGE-L: 0.3548 
+IT -> BLEU: 0.0070, ROUGE1: 0.1029, ROUGE-L: 0.1024
+
+
+Model_2 : Commom (span) denoising training -------------
+
+==== Base mT5 ====
+EN -> BLEU: 0.0000, ROUGE1: 0.0009, ROUGE-L: 0.0009
+IT -> BLEU: 0.0000, ROUGE1: 0.0020, ROUGE-L: 0.0020
+
+==== Fine-tuned mT5 ====
+EN -> BLEU: 0.0000, ROUGE1: 0.0045, ROUGE-L: 0.0045
+IT -> BLEU: 0.0000, ROUGE1: 0.0016, ROUGE-L: 0.0016
+
+Evaluation Summary
+
+Two denoising pretraining approaches were compared against the base mT5 model on the EN–IT OPUS-100 dataset. The task was corrupt → reconstruct evaluation using BLEU and ROUGE.
+
+Model 1: Bilingual Denoising (word/char noise)
+
+English: BLEU = 0.0422, ROUGE1 = 0.3669, ROUGE-L = 0.3548
+
+Italian: BLEU = 0.0070, ROUGE1 = 0.1029, ROUGE-L = 0.1024
+
+Clear improvement over base mT5, especially for English.
+
+Model 2: Common Span Denoising
+
+English: BLEU = 0.0000, ROUGE1 = 0.0045, ROUGE-L = 0.0045
+
+Italian: BLEU = 0.0000, ROUGE1 = 0.0016, ROUGE-L = 0.0016
+
+Almost no improvement compared to base mT5.
+
+Conclusion
+Model 1 (Bilingual denoising with word/character-level noise) performed best, showing significant gains over the base model.
+Model 2 (span corruption) was ineffective in this setup, likely because span masking was already part of mT5’s original pretraining, and the small bilingual dataset provided little additional benefit.

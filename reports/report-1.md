@@ -106,3 +106,71 @@ Both approaches contribute to denoising pretraining, but they serve different pu
 For academic rigor and faithful replication of the T5 methodology, the **T5-style span corruption with sentinel tokens** was chosen as the final method.
 
 This ensures that the project not only achieves denoising pretraining on OPUS-100 but also follows best practices in modern sequence-to-sequence pretraining, making it the most effective and generalizable approach.
+
+Fine-tunes mT5-small on your noisy translation dataset.
+
+The model learns to denoise and translate in both directions ---------- Special Point- Novelty (\*\*\*)
+
+Sure! Let’s break it down carefully.
+
+1️⃣ What Happens During EN_noisy → IT / IT_noisy → EN
+
+Your model is trained in a bilingual denoising translation setup:
+
+EN_noisy → IT
+
+Input: An English sentence with noise, e.g., missing words, swapped words, or deleted characters.
+
+Target: The correct Italian translation of the original clean English sentence.
+
+Model Task: Learn to both:
+
+Correct the noisy English input (denoising).
+
+Translate it into Italian.
+
+IT_noisy → EN
+
+Input: An Italian sentence with noise.
+
+Target: The correct English translation of the original clean Italian sentence.
+
+Model Task: Learn to denoise Italian input and translate it into English.
+
+2️⃣ How This Works in Practice
+
+The encoder of mT5 reads the noisy input.
+
+The decoder generates the clean translation in the other language.
+
+By training on both directions, the model becomes bidirectional:
+
+It can translate both English → Italian and Italian → English.
+
+It can handle imperfect input text, like typos or OCR errors.
+
+3️⃣ Importance of This Approach
+
+Robust Translation:
+
+Real-world text is rarely perfect. Users make typos, OCR outputs are noisy, etc.
+
+Training with noisy input ensures the model still produces correct translations.
+
+Bidirectional Learning:
+
+Instead of training two separate models, one model handles both directions.
+
+Saves computation and allows shared multilingual understanding.
+
+Data Efficiency:
+
+Adding noise artificially increases the variety of input without needing extra data.
+
+The model learns to generalize better.
+
+Real-World Applications:
+
+Useful for translation apps, chatbots, or OCR pipelines where input text is often messy.
+
+Improves the user experience by handling imperfect text gracefully.
