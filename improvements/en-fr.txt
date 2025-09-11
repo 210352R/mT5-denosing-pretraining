@@ -1,0 +1,12 @@
+==== EN -> FR ====
+Fine-Tuned BLEU: 0.0087, ROUGE1: 0.1920
+Base BLEU: 0.0000, ROUGE1: 0.0013
+
+==== FR -> EN ====
+Fine-Tuned BLEU: 0.0122, ROUGE1: 0.2997
+Base BLEU: 0.0000, ROUGE1: 0.0019
+
+
+==== Perplexity Comparison ====
+EN -> FR | Fine-Tuned: 13.5817,
+FR -> EN | Fine-Tuned: 20.2271,
